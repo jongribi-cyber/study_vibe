@@ -1,9 +1,1103 @@
+
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Hello Git!</title>
-  </head>
-  <body>
-    <h1>나의 첫 Git 프로젝트</h1>
-  </body>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>여종립 — 웹 기획자 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Gmarket+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #FFFFFF;
+    --paper: #0C1C2A;
+    --gold: #66FFCC;
+    --gold-light: rgba(102, 255, 204, 0.3);
+    --indigo: #1E3A5F;
+    --indigo-mid: #2D5A8E;
+    --indigo-light: rgba(30, 58, 95, 0.5);
+    --mid: rgba(255, 255, 255, 0.6);
+    --rule: rgba(255, 255, 255, 0.12);
+    --serif: 'Gmarket Sans', 'Noto Serif KR', serif;
+    --sans: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(12, 28, 42, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--rule);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 3rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-year {
+    position: absolute;
+    right: -0.05em;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--serif);
+    font-size: clamp(240px, 30vw, 420px);
+    font-weight: 700;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(10,10,15,0.07);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--selif);
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    max-width: 14em;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .hero-title strong {
+    font-weight: 700;
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--mid);
+    max-width: 36rem;
+    margin: 1.5rem 0 2.5rem;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-end;
+    border-top: 0.5px solid var(--rule);
+    padding-top: 2rem;
+    max-width: 48rem;
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+  }
+  .stat-num span { font-size: 1rem; font-weight: 400; color: var(--gold); margin-left: 2px; }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--mid);
+    line-height: 1;
+  }
+  .scroll-arrow {
+    width: 12px;
+    height: 12px;
+    border-right: 1px solid var(--mid);
+    border-bottom: 1px solid var(--mid);
+    transform: rotate(45deg);
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(4px); }
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 7rem 3rem; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 0.5px;
+    background: var(--gold-light);
+    max-width: 120px;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: rgba(12, 28, 42, 0.5); color: var(--ink); }
+  #about .section-label { color: var(--gold-light); }
+  #about .section-label::after { background: var(--gold-light); }
+  #about .section-title { color: var(--ink); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-text {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--mid);
+    font-weight: 300;
+  }
+  .about-text p + p { margin-top: 1.2rem; }
+  .about-text strong { color: var(--ink); font-weight: 500; }
+
+  .about-skills {}
+  .skill-group { margin-bottom: 2.5rem; }
+  .skill-group-title {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-tag {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.75rem;
+    border: 0.5px solid var(--rule);
+    color: var(--mid);
+    border-radius: 2px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--paper); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 0.5px solid var(--rule);
+    margin-top: 1rem;
+  }
+  .service-card {
+    padding: 2.5rem 2rem;
+    border-right: 0.5px solid var(--rule);
+    border-bottom: 0.5px solid var(--rule);
+    position: relative;
+    transition: background 0.3s;
+  }
+  .service-card:hover { background: rgba(255, 255, 255, 0.1); }
+  .service-card:nth-child(3n) { border-right: none; }
+  .service-num {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+  .service-icon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 1.2rem;
+    opacity: 0.7;
+  }
+  .service-name {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+  }
+  .service-desc {
+    font-size: 0.875rem;
+    color: var(--mid);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  /* ── TIMELINE ── */
+  #timeline { background: rgba(12, 28, 42, 0.3); }
+  .timeline-container { position: relative; margin-top: 3rem; }
+  .timeline-line {
+    position: absolute;
+    left: 7rem;
+    top: 0; bottom: 0;
+    width: 0.5px;
+    background: var(--rule);
+  }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 0 2.5rem;
+    padding: 0 0 3.5rem;
+    position: relative;
+  }
+  .timeline-year {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-align: right;
+    padding-top: 0.25rem;
+    padding-right: 2.5rem;
+    position: relative;
+  }
+  .timeline-year::after {
+    content: '';
+    position: absolute;
+    right: -4px;
+    top: 0.45rem;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+  .timeline-content {}
+  .timeline-title {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+  .timeline-company {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .timeline-desc {
+    font-size: 0.875rem;
+    color: var(--mid);
+    font-weight: 300;
+    line-height: 1.75;
+    max-width: 44rem;
+  }
+
+  /* ── WORK ── */
+  #work { background: var(--paper); }
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .work-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.5px solid var(--rule);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .work-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3); }
+  .work-card:first-child {
+    grid-column: 1 / -1;
+  }
+  .work-thumb {
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    position: relative;
+    overflow: hidden;
+  }
+  .work-card:first-child .work-thumb { height: 340px; }
+
+  .wt-1 { background: linear-gradient(135deg, #1E3A5F 0%, #2D5A8E 100%); color: rgba(255,255,255,0.15); }
+  .wt-2 { background: linear-gradient(135deg, #3D2B1A 0%, #6B4A2A 100%); color: rgba(255,255,255,0.12); }
+  .wt-3 { background: linear-gradient(135deg, #1A3028 0%, #2D5A46 100%); color: rgba(255,255,255,0.12); }
+  .wt-4 { background: linear-gradient(135deg, #2A1A3A 0%, #4A2D6B 100%); color: rgba(255,255,255,0.12); }
+  .wt-5 { background: linear-gradient(135deg, #3A2A18 0%, #6A4A28 100%); color: rgba(255,255,255,0.12); }
+
+  .work-thumb-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255,255,255,0.18);
+    font-size: inherit;
+  }
+  .work-info { padding: 1.5rem; }
+  .work-tags { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; }
+  .work-tag {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    background: var(--gold-light);
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+  }
+  .work-title {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .work-desc {
+    font-size: 0.85rem;
+    color: var(--mid);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .work-year {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--mid);
+    letter-spacing: 0.1em;
+    margin-top: 0.75rem;
+  }
+
+  /* ── PROCESS ── */
+  #process { background: var(--paper); color: var(--ink); }
+  #process .section-label { color: var(--gold); }
+  #process .section-label::after { background: var(--gold-light); }
+  #process .section-title { color: var(--ink); }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    margin-top: 3rem;
+    border-left: 0.5px solid var(--rule);
+  }
+  .process-step {
+    padding: 2rem 1.5rem;
+    border-right: 0.5px solid var(--rule);
+    border-top: 0.5px solid var(--rule);
+  }
+  .process-step-num {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+  .process-step-name {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  .process-step-desc {
+    font-size: 0.8rem;
+    color: var(--mid);
+    font-weight: 300;
+    line-height: 1.75;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--paper); }
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .contact-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+  .contact-title strong { font-weight: 700; color: var(--indigo); display: block; }
+  .contact-sub {
+    font-size: 0.9rem;
+    color: var(--mid);
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-info { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.875rem;
+  }
+  .contact-row-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    min-width: 5rem;
+    text-transform: uppercase;
+  }
+  .contact-row-value {
+    color: var(--ink);
+    font-weight: 400;
+    text-decoration: none;
+  }
+  .contact-row-value:hover { color: var(--indigo-mid); }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .form-input, .form-textarea {
+    background: rgba(255, 255, 255, 0.1);
+    border: 0.5px solid var(--rule);
+    padding: 0.75rem 1rem;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--ink);
+    outline: none;
+    border-radius: 2px;
+    transition: border-color 0.2s;
+    resize: none;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: var(--indigo-mid); }
+  .form-textarea { height: 120px; }
+  .form-btn {
+    background: var(--gold);
+    color: var(--paper);
+    border: none;
+    padding: 0.9rem 2.5rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    align-self: flex-start;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .form-btn:hover { background: rgba(102, 255, 204, 0.8); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--paper);
+    color: var(--mid);
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .about-grid, .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .services-grid, .process-grid { grid-template-columns: 1fr; }
+    .service-card { border-right: none; }
+    .work-grid { grid-template-columns: 1fr; }
+    .work-card:first-child { grid-column: 1; }
+    .hero-bg-year { display: none; }
+    .hero-stats { flex-wrap: wrap; gap: 2rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">RIBI's Portfolio</a>
+  <ul class="nav-links">
+    <li><a href="#about">소개</a></li>
+    <li><a href="#services">서비스</a></li>
+    <li><a href="#timeline">경력</a></li>
+    <li><a href="#work">작업물</a></li>
+    <li><a href="#contact">연락처</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-year" id="heroYear">30</div>
+
+  <p class="hero-eyebrow">Information Architecture / UI·UX Design / Web Accessibility & Cross Browsing Expert</p>
+
+  <h1 class="hero-title">
+    PLAN. DESIGN. CODE. <br>
+    <strong>완벽한 삼중주로 웹을 짓습니다.</strong>
+  </h1>
+
+  <p class="hero-sub">
+    1995년부터 웹과 함께 성장해온 기획자입니다. 
+    사용자가 느끼기 전에 먼저 생각하고, 디자인이 완성되기 전에 구조를 세우며, 
+    코드가 배포되기 전에 전체를 봅니다.
+  </p>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num" id="countYear">0<span>년</span></div>
+      <div class="stat-label">업력</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" id="countProject">0<span>+</span></div>
+      <div class="stat-label">완료 프로젝트</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" id="countClient">0<span>+</span></div>
+      <div class="stat-label">협력 클라이언트</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" id="countAward">0<span>+</span></div>
+      <div class="stat-label">수상 실적</div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">About</p>
+  <div class="about-grid">
+    <div>
+      <h2 class="section-title">30년이 만든<br>한 사람의 관점</h2>
+      <div class="about-text">
+        <p>
+          1995년, 대학 동기들이 PC통신 동호회 게시판에 글을 올릴 때 저는 
+          <strong>첫 HTML 페이지</strong>를 만들었습니다. 
+          모뎀 접속음이 배경음악이던 그 시절부터, 지금의 앱보다 복잡한 서비스를 기획하는 오늘까지 — 
+          웹이 변하는 속도만큼 저도 변해왔습니다.
+        </p>
+        <p>
+          기획이 곧 디자인이고, 디자인이 곧 코드여야 한다는 믿음을 갖고 있습니다. 
+          <strong>세 가지를 모두 할 수 있는 사람</strong>이기에 
+          "이건 기획 이슈야, 디자인 이슈야"라는 핑퐁 없이 
+          한 사람의 시각으로 프로젝트를 완성합니다.
+        </p>
+        <p>
+          대기업 그룹사 포털, 금융·공공·의료 플랫폼, 스타트업 MVP까지 
+          거의 모든 도메인을 경험했습니다. 
+          트렌드는 공부하지만 <strong>트렌드에 끌려다니지 않습니다.</strong>
+        </p>
+      </div>
+    </div>
+    <div class="about-skills">
+      <div class="skill-group">
+        <p class="skill-group-title">기획 · 전략</p>
+        <div class="skill-tags">
+          <span class="skill-tag">IA 설계</span>
+          <span class="skill-tag">사용자 리서치</span>
+          <span class="skill-tag">UX 전략</span>
+          <span class="skill-tag">서비스 기획</span>
+          <span class="skill-tag">RFP 작성</span>
+          <span class="skill-tag">프로젝트 관리</span>
+          <span class="skill-tag">WBS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">디자인</p>
+        <div class="skill-tags">
+          <span class="skill-tag">UI 디자인</span>
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">Photoshop</span>
+          <span class="skill-tag">Illustrator</span>
+          <span class="skill-tag">모션 기초</span>
+          <span class="skill-tag">디자인 시스템</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">퍼블리싱</p>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML5</span>
+          <span class="skill-tag">CSS3</span>
+          <span class="skill-tag">반응형 웹</span>
+          <span class="skill-tag">접근성 (WCAG)</span>
+          <span class="skill-tag">크로스브라우징</span>
+          <span class="skill-tag">JavaScript 기초</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">도구 · 협업</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Notion</span>
+          <span class="skill-tag">Jira</span>
+          <span class="skill-tag">Confluence</span>
+          <span class="skill-tag">Zeplin</span>
+          <span class="skill-tag">Git 기초</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <p class="section-label">Services</p>
+  <h2 class="section-title">무엇을 도와드릴 수 있나요</h2>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-num">01</span>
+      <svg class="service-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="6" width="28" height="24" rx="2" stroke="#B8965A" stroke-width="1.2"/>
+        <path d="M4 12h28" stroke="#B8965A" stroke-width="1.2"/>
+        <rect x="9" y="18" width="7" height="7" stroke="#B8965A" stroke-width="1.2"/>
+        <path d="M19 19h8M19 23h6" stroke="#B8965A" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      <p class="service-name">웹 서비스 기획</p>
+      <p class="service-desc">사업 목표와 사용자 니즈를 연결하는 서비스 기획. 정보구조(IA) 설계, 플로우 차트, 화면 정의서, 스토리보드까지 프로젝트 전 단계를 문서로 구조화합니다.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">02</span>
+      <svg class="service-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="18" cy="18" r="13" stroke="#B8965A" stroke-width="1.2"/>
+        <path d="M18 10v16M10 18h16" stroke="#B8965A" stroke-width="1.2" stroke-linecap="round"/>
+        <circle cx="18" cy="18" r="4" stroke="#B8965A" stroke-width="1.2"/>
+      </svg>
+      <p class="service-name">UX · UI 디자인</p>
+      <p class="service-desc">사용자 리서치 결과를 바탕으로 한 와이어프레임, 프로토타입, 고해상도 UI 디자인. 컴포넌트 기반 디자인 시스템 구축으로 일관성과 효율을 모두 잡습니다.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">03</span>
+      <svg class="service-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 12l-4 6 4 6M28 12l4 6-4 6M14 26l8-16" stroke="#B8965A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p class="service-name">HTML·CSS 퍼블리싱</p>
+      <p class="service-desc">웹 표준, 접근성(WCAG 2.1 AA), 크로스브라우징을 준수하는 시맨틱 마크업. 모바일 퍼스트 반응형 레이아웃과 CSS 애니메이션으로 완성도를 높입니다.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">04</span>
+      <svg class="service-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 28L12 10l6 12 4-7 8 13" stroke="#B8965A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="12" cy="10" r="2" stroke="#B8965A" stroke-width="1.2"/>
+        <circle cx="26" cy="22" r="2" stroke="#B8965A" stroke-width="1.2"/>
+      </svg>
+      <p class="service-name">사용성 개선 · 리뉴얼</p>
+      <p class="service-desc">운영 중인 서비스의 전환율 저하, 이탈률 증가 등 문제 원인을 데이터와 사용자 관찰로 진단하고, 단계적인 개선 로드맵을 제안합니다.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">05</span>
+      <svg class="service-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="6" y="6" width="10" height="10" rx="1" stroke="#B8965A" stroke-width="1.2"/>
+        <rect x="20" y="6" width="10" height="10" rx="1" stroke="#B8965A" stroke-width="1.2"/>
+        <rect x="6" y="20" width="10" height="10" rx="1" stroke="#B8965A" stroke-width="1.2"/>
+        <path d="M20 24h10M25 20v10" stroke="#B8965A" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      <p class="service-name">디자인 시스템 구축</p>
+      <p class="service-desc">토큰부터 컴포넌트 라이브러리까지 — 개발팀과 협업하는 살아있는 디자인 시스템. 스케일이 커져도 일관성을 유지할 수 있는 구조를 설계합니다.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">06</span>
+      <svg class="service-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 6v4M18 26v4M6 18h4M26 18h4" stroke="#B8965A" stroke-width="1.2" stroke-linecap="round"/>
+        <circle cx="18" cy="18" r="8" stroke="#B8965A" stroke-width="1.2"/>
+        <circle cx="18" cy="18" r="3" stroke="#B8965A" stroke-width="1.2"/>
+      </svg>
+      <p class="service-name">강의 · 컨설팅</p>
+      <p class="service-desc">기획자 양성 교육, 팀 내 UX 문화 정착 워크숍, 신규 서비스 방향 설정을 위한 전략 컨설팅. 현장 경험에서 나온 실질적인 인사이트를 전합니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <p class="section-label">Career</p>
+  <h2 class="section-title">30년의 발자국</h2>
+
+  <div class="timeline-container">
+    <div class="timeline-line"></div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-year">2020 –</div>
+      <div class="timeline-content">
+        <p class="timeline-title">독립 — 프리랜서 & 스튜디오 운영</p>
+        <p class="timeline-company">MJ STUDIO</p>
+        <p class="timeline-desc">기획·디자인·퍼블리싱을 원스톱으로 제공하는 1인 스튜디오 운영. 금융, 공공, 헬스케어 도메인 클라이언트와 장기 파트너십 구축. 연간 12–15개 프로젝트 납품.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-year">2012 –<br>2019</div>
+      <div class="timeline-content">
+        <p class="timeline-title">UX 전략팀 팀장</p>
+        <p class="timeline-company">에이치디씨아이서비스 (HDC I-Service)</p>
+        <p class="timeline-desc">그룹사 10개 계열사 디지털 채널 기획 총괄. UX 표준 가이드 제정, 디자인 시스템 초안 설계. 팀원 8명 육성 및 UX 조직 확장 주도.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-year">2006 –<br>2011</div>
+      <div class="timeline-content">
+        <p class="timeline-title">선임 기획자 / 파트장</p>
+        <p class="timeline-company">네오위즈 (Neowiz)</p>
+        <p class="timeline-desc">피망 게임 포털 전면 리뉴얼 기획 리드. 월간 순방문자 1,200만 규모 서비스 IA 재설계. 커뮤니티·결제·개인화 기능 기획 총괄.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-year">2001 –<br>2005</div>
+      <div class="timeline-content">
+        <p class="timeline-title">웹 기획자 / 디자이너</p>
+        <p class="timeline-company">오리콤 인터랙티브</p>
+        <p class="timeline-desc">삼성, LG, 현대 등 대기업 브랜드 사이트 기획 및 UI 디자인. Flash 인터랙티브 캠페인 페이지 100여 개 제작. Webby Award 후보 선정 2회.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-year">1995 –<br>2000</div>
+      <div class="timeline-content">
+        <p class="timeline-title">웹마스터 / HTML 개발자</p>
+        <p class="timeline-company">나우누리 (NowNuri) → 개인 에이전시</p>
+        <p class="timeline-desc">국내 초기 포털 사이트 운영 및 콘텐츠 기획. Netscape 전용 레이아웃 설계부터 IE4 호환성 작업까지. 프리랜서로 기업 초기 웹사이트 30여 개 구축.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <p class="section-label">Selected Work</p>
+  <h2 class="section-title">대표 작업물</h2>
+
+  <div class="work-grid">
+    <div class="work-card reveal">
+      <div class="work-thumb wt-1">
+        <span class="work-thumb-label">하나은행</span>
+      </div>
+      <div class="work-info">
+        <div class="work-tags">
+          <span class="work-tag">기획</span>
+          <span class="work-tag">UX</span>
+          <span class="work-tag">퍼블리싱</span>
+        </div>
+        <p class="work-title">하나은행 개인뱅킹 앱 리뉴얼</p>
+        <p class="work-desc">월 900만 MAU 금융 앱 전면 리뉴얼. 고령 사용자 접근성 개선, 핵심 태스크 클릭 수 40% 단축, 앱스토어 평점 3.2 → 4.6 달성.</p>
+        <p class="work-year">2022</p>
+      </div>
+    </div>
+
+    <div class="work-card reveal">
+      <div class="work-thumb wt-2">
+        <span class="work-thumb-label">공공</span>
+      </div>
+      <div class="work-info">
+        <div class="work-tags">
+          <span class="work-tag">기획</span>
+          <span class="work-tag">디자인</span>
+        </div>
+        <p class="work-title">서울시 통합 민원포털 고도화</p>
+        <p class="work-desc">시민 1,000만 명이 사용하는 민원 포털 UX 개선. 공공 웹 접근성 최우수 등급 획득. 평균 처리 완료율 58% → 81% 향상.</p>
+        <p class="work-year">2021</p>
+      </div>
+    </div>
+
+    <div class="work-card reveal">
+      <div class="work-thumb wt-3">
+        <span class="work-thumb-label">헬스케어</span>
+      </div>
+      <div class="work-info">
+        <div class="work-tags">
+          <span class="work-tag">서비스 기획</span>
+          <span class="work-tag">IA</span>
+        </div>
+        <p class="work-title">대형병원 환자 경험 플랫폼</p>
+        <p class="work-desc">예약–진료–사후관리를 아우르는 환자 여정 전체 설계. 의료진·환자·보호자 3개 관점 IA 통합. 병원 내 디지털 전환 로드맵 수립.</p>
+        <p class="work-year">2023</p>
+      </div>
+    </div>
+
+    <div class="work-card reveal">
+      <div class="work-thumb wt-4">
+        <span class="work-thumb-label">SaaS</span>
+      </div>
+      <div class="work-info">
+        <div class="work-tags">
+          <span class="work-tag">기획</span>
+          <span class="work-tag">디자인 시스템</span>
+        </div>
+        <p class="work-title">B2B SaaS 대시보드 설계</p>
+        <p class="work-desc">중소 제조업체 대상 ERP 연동 SaaS 대시보드. 데이터 시각화 컴포넌트 40종, Figma 디자인 시스템 전달. 스타트업 Series A 투자 유치 지원.</p>
+        <p class="work-year">2024</p>
+      </div>
+    </div>
+
+    <div class="work-card reveal">
+      <div class="work-thumb wt-5">
+        <span class="work-thumb-label">이커머스</span>
+      </div>
+      <div class="work-info">
+        <div class="work-tags">
+          <span class="work-tag">기획</span>
+          <span class="work-tag">퍼블리싱</span>
+        </div>
+        <p class="work-title">패션 버티컬 커머스 리뉴얼</p>
+        <p class="work-desc">구매 전환율 개선을 위한 상품 상세–장바구니–결제 플로우 최적화. A/B 테스트 기반 반복 개선. 전환율 2.1% → 3.8% 달성.</p>
+        <p class="work-year">2023</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <p class="section-label">Process</p>
+  <h2 class="section-title">일하는 방식</h2>
+
+  <div class="process-grid">
+    <div class="process-step reveal">
+      <p class="process-step-num">STEP 01</p>
+      <p class="process-step-name">문제 정의</p>
+      <p class="process-step-desc">비즈니스 목표와 사용자 불편을 동시에 파악합니다. 데이터, 인터뷰, 현장 관찰을 통해 진짜 문제를 찾습니다.</p>
+    </div>
+    <div class="process-step reveal">
+      <p class="process-step-num">STEP 02</p>
+      <p class="process-step-name">구조 설계</p>
+      <p class="process-step-desc">IA와 플로우 차트로 전체 구조를 확정합니다. 이 단계에서 80%의 문제가 해결됩니다.</p>
+    </div>
+    <div class="process-step reveal">
+      <p class="process-step-num">STEP 03</p>
+      <p class="process-step-name">UI 디자인</p>
+      <p class="process-step-desc">와이어프레임 → 프로토타입 → 고해상도 디자인. 사용성 테스트를 병행하며 반복 개선합니다.</p>
+    </div>
+    <div class="process-step reveal">
+      <p class="process-step-num">STEP 04</p>
+      <p class="process-step-name">퍼블리싱</p>
+      <p class="process-step-desc">디자인 의도를 100% 살리는 마크업. 개발팀 핸드오프 산출물도 함께 제작합니다.</p>
+    </div>
+    <div class="process-step reveal">
+      <p class="process-step-num">STEP 05</p>
+      <p class="process-step-name">검수 · 인계</p>
+      <p class="process-step-desc">브라우저 · 디바이스 QA, 접근성 검사 후 운영팀이 이어갈 수 있는 문서와 함께 인계합니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Contact</p>
+  <div class="contact-inner">
+    <div>
+      <h2 class="contact-title">
+        함께 만들고 싶은<br>
+        <strong>프로젝트가 있나요?</strong>
+      </h2>
+      <p class="contact-sub">
+        규모나 단계에 상관없이 먼저 연락 주세요.<br>
+        30분 무료 상담으로 방향을 함께 잡아보겠습니다.
+      </p>
+
+      <div class="contact-info">
+        <div class="contact-row">
+          <span class="contact-row-label">이메일</span>
+          <a href="mailto:minjun@mjstudio.kr" class="contact-row-value">minjun@mjstudio.kr</a>
+        </div>
+        <div class="contact-row">
+          <span class="contact-row-label">전화</span>
+          <span class="contact-row-value">010–1234–5678</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-row-label">위치</span>
+          <span class="contact-row-value">서울특별시 마포구</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-row-label">링크드인</span>
+          <a href="#" class="contact-row-value">linkedin.com/in/minjun-kim</a>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="contact-form">
+        <div class="form-group">
+          <label class="form-label">이름</label>
+          <input type="text" class="form-input" placeholder="홍길동">
+        </div>
+        <div class="form-group">
+          <label class="form-label">이메일</label>
+          <input type="email" class="form-input" placeholder="hello@example.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">프로젝트 유형</label>
+          <input type="text" class="form-input" placeholder="신규 기획 / 리뉴얼 / 퍼블리싱 등">
+        </div>
+        <div class="form-group">
+          <label class="form-label">메시지</label>
+          <textarea class="form-textarea" placeholder="간략한 프로젝트 내용이나 문의 사항을 적어주세요."></textarea>
+        </div>
+        <button type="button" class="form-btn" onclick="alert('메시지가 전송되었습니다. 1영업일 내로 연락드리겠습니다.')">메시지 보내기 →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 여종립 / MJ STUDIO</span>
+  <span>웹 기획 · UX 디자인 · HTML 퍼블리싱</span>
+  <span>서울 마포구 · <a href="mailto:minjun@mjstudio.kr">minjun@mjstudio.kr</a></span>
+</footer>
+
+<script>
+  /* ── Counter animation ── */
+  const targets = {
+    countYear: 30,
+    countProject: 340,
+    countClient: 120,
+    countAward: 18
+  };
+  function animateCount(id, target) {
+    const el = document.getElementById(id);
+    const unit = el.querySelector('span').outerHTML;
+    const duration = 1800;
+    const start = performance.now();
+    function step(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      el.innerHTML = Math.floor(ease * target) + unit;
+      if (p < 1) requestAnimationFrame(step);
+      else el.innerHTML = target + unit;
+    }
+    requestAnimationFrame(step);
+  }
+
+  let counted = false;
+  const hero = document.getElementById('hero');
+  const heroObs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !counted) {
+      counted = true;
+      setTimeout(() => {
+        for (const [id, val] of Object.entries(targets)) animateCount(id, val);
+      }, 300);
+    }
+  }, { threshold: 0.4 });
+  heroObs.observe(hero);
+
+  /* ── Scroll reveal ── */
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => revealObs.observe(el));
+</script>
+</body>
 </html>
